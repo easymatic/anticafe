@@ -31,6 +31,7 @@ DEBUG = True
 INSTALLED_APPS = [
     'rest_framework',
     'person.apps.PersonConfig',
+    'session.apps.SessionConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

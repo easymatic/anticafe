@@ -11,22 +11,16 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
+        ('person', '0001_initial'),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Card',
+            name='Session',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('indentifier', models.TextField()),
-            ],
-        ),
-        migrations.CreateModel(
-            name='Person',
-            fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('first_name', models.TextField(null=True)),
-                ('second_name', models.TextField(null=True)),
+                ('start', models.DateTimeField()),
+                ('end', models.DateTimeField(null=True)),
                 ('card', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='person.Card')),
             ],
         ),

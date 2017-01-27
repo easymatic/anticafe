@@ -15,8 +15,16 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from django.http import HttpResponse
+
+
+def index(request):
+        return HttpResponse("Welcome to AntiCafe")
+
 
 urlpatterns = [
-    url(r'', include('person.urls')),
+    url(r'^$', index, name='index'),
+    url(r'^person/', include('person.urls')),
+    url(r'^session/', include('session.urls')),
     url(r'^admin/', admin.site.urls),
 ]
