@@ -24,6 +24,10 @@ def start(request):
     card = Card.objects.filter(indentifier=indentifier).first()
     if not card:
         return Response("No such card", status=status.HTTP_404_NOT_FOUND)
+    open_sessions = Session.objects.filter(card=card.id, end=None)
+    if open_sessions:
+        return Response('Session for this card already opened',
+                        status=status.HTTP_400_BAD_REQUEST)
     serializer = SessionSerializer(data={'card': card.id})
     if serializer.is_valid():
         serializer.save()
@@ -42,10 +46,13 @@ def stop(request):
     card = Card.objects.filter(indentifier=indentifier).first()
     if not card:
         return Response("No such card", status=status.HTTP_404_NOT_FOUND)
-    session = card.session_set.first()
+    session = card.session_set.filter(end=None).first()
     if not session:
         return Response(
             "no session for this card", status=status.HTTP_404_NOT_FOUND)
+    if not session.is_active:
+        return Response("Session not active",
+                        status=status.HTTP_400_BAD_REQUEST)
     session.end = timezone.now()
     session.save()
     return Response(SessionSerializer(session).data)
