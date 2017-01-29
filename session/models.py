@@ -9,5 +9,14 @@ class Session(models.Model):
     end = models.DateTimeField(null=True)
     card = models.ForeignKey(Card)
 
+    @property
+    def duration(self):
+        now = timezone.now()
+        return (now-self.start).seconds
+
+    @property
+    def is_active(self):
+        return not bool(self.end)
+
     def __str__(self):
         return "{}: {}".format(self.card, self.start)

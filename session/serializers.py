@@ -9,4 +9,4 @@ class BaseSerializer(serializers.ModelSerializer):
 class SessionSerializer(BaseSerializer):
     class Meta:
         model = Session
-        fields = ('id', 'start', 'end', 'card')
+        fields = ('id', 'start', 'end', 'card', 'duration', 'is_active')

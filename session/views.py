@@ -16,7 +16,15 @@ class SessionViewSet(viewsets.ModelViewSet):
 
 @api_view(['POST'])
 def start(request):
-    serializer = SessionSerializer(data=request.data)
+    card_serializer = CardSerializer(data=request.data)
+    if not card_serializer.is_valid():
+        return Response(
+            card_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    indentifier = card_serializer.validated_data['indentifier']
+    card = Card.objects.filter(indentifier=indentifier).first()
+    if not card:
+        return Response("No such card", status=status.HTTP_404_NOT_FOUND)
+    serializer = SessionSerializer(data={'card': card.id})
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
