@@ -12,6 +12,12 @@ from .serializers import SessionSerializer
 class SessionViewSet(viewsets.ModelViewSet):
     queryset = Session.objects.all()
     serializer_class = SessionSerializer
+    filter_fields = ('start', 'end', 'card')
+
+    def get_queryset(self):
+        if 'is_active' in self.request.query_params:
+            return Session.objects.filter(end__isnull=True)
+        return Session.objects.all()
 
 
 @api_view(['POST'])
