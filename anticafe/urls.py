@@ -16,15 +16,26 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from django.http import HttpResponse
+from rest_framework import routers
+
+from person.views import PersonViewSet, CardViewSet
+from session.views import SessionViewSet
 
 
 def index(request):
-        return HttpResponse("Welcome to AntiCafe")
+    return HttpResponse("Welcome to AntiCafe")
 
 
+router = routers.DefaultRouter()
+router.register(r'person', PersonViewSet)
+router.register(r'card', CardViewSet)
+router.register(r'session', SessionViewSet)
 urlpatterns = [
     url(r'^$', index, name='index'),
-    url(r'^person/', include('person.urls')),
+    url(r'^api/', include(router.urls)),
+    #  url(r'^person/', include('person.urls')),
     url(r'^session/', include('session.urls')),
     url(r'^admin/', admin.site.urls),
+    url(r'^api-auth/',
+        include('rest_framework.urls', namespace='rest_framework'))
 ]

@@ -1,15 +1,8 @@
-from django.conf.urls import url, include
-from rest_framework import routers
-
+from django.conf.urls import url
 from . import views
 
 
-router = routers.DefaultRouter()
-router.register(r'session', views.SessionViewSet)
-
 urlpatterns = [
-    url(r'^', include(router.urls)),
     url(r'^start/', views.start),
     url(r'^stop/', views.stop),
-    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]
