@@ -4,6 +4,7 @@ from django.db import models
 from django.utils import timezone
 from person.models import Card
 
+
 class Session(models.Model):
     start = models.DateTimeField(default=timezone.now, blank=True)
     end = models.DateTimeField(null=True)

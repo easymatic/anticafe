@@ -33,8 +33,8 @@ router.register(r'session', SessionViewSet)
 urlpatterns = [
     url(r'^$', index, name='index'),
     url(r'^api/', include(router.urls)),
-    #  url(r'^person/', include('person.urls')),
-    url(r'^session/', include('session.urls')),
+    url(r'^api/session/', include('session.urls')),
+    url(r'^api/reader/', include('reader.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^api-auth/',
         include('rest_framework.urls', namespace='rest_framework'))
