@@ -20,6 +20,7 @@ from rest_framework import routers
 
 from person.views import PersonViewSet, CardViewSet
 from session.views import SessionViewSet
+from plan.views import PlanViewSet, IntervalViewSet
 
 
 def index(request):
@@ -30,6 +31,8 @@ router = routers.DefaultRouter()
 router.register(r'person', PersonViewSet)
 router.register(r'card', CardViewSet)
 router.register(r'session', SessionViewSet)
+router.register(r'plan', PlanViewSet)
+router.register(r'interval', IntervalViewSet)
 urlpatterns = [
     url(r'^$', index, name='index'),
     url(r'^api/', include(router.urls)),

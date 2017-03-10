@@ -3,6 +3,7 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from django.utils import timezone
+from datetime import timedelta
 from .models import Session
 from person.models import Card
 from person.serializers import CardSerializer
@@ -18,6 +19,22 @@ class SessionViewSet(viewsets.ModelViewSet):
         if 'is_active' in self.request.query_params:
             return Session.objects.filter(end__isnull=True)
         return Session.objects.all()
+
+
+@api_view(['POST'])
+def calc(request):
+    intervals = []
+
+    def c(delta, cost):
+        return delta.seconds/60*cost
+    default_cost = 5  # per second
+    duration = timedelta(minutes=28)
+    if duration < intervals[-1][1]:
+        intervals[-1][1] = duration
+    intervals = [(end-start, cost) for start, end, cost in intervals]
+    diff = duration - sum([delta for delta, _ in intervals], timedelta())
+    all_cost = sum([c(delta, cost) for delta, cost in intervals])
+    all_cost += c(diff, default_cost)
 
 
 @api_view(['POST'])

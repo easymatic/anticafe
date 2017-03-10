@@ -32,6 +32,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'person.apps.PersonConfig',
     'session.apps.SessionConfig',
+    'plan.apps.PlanConfig',
+    'reader.apps.ReaderConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -39,8 +41,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'corsheaders',
     'channels',
-    'plan',
-    'reader',
     # Disable Django's own staticfiles handling in favour of WhiteNoise, for
     # greater consistency between gunicorn and `./manage.py runserver`. See:
     # http://whitenoise.evans.io/en/stable/django.html#using-whitenoise-in-development
