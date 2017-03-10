@@ -30,6 +30,7 @@ DEBUG = True
 
 INSTALLED_APPS = [
     'rest_framework',
+    'rest_framework_docs',
     'person.apps.PersonConfig',
     'session.apps.SessionConfig',
     'plan.apps.PlanConfig',

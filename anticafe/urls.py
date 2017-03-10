@@ -39,6 +39,7 @@ urlpatterns = [
     url(r'^api/session/', include('session.urls')),
     url(r'^api/reader/', include('reader.urls')),
     url(r'^admin/', admin.site.urls),
+    url(r'^docs/', include('rest_framework_docs.urls')),
     url(r'^api-auth/',
         include('rest_framework.urls', namespace='rest_framework'))
 ]
