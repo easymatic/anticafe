@@ -20,4 +20,4 @@ class Interval(models.Model):
     plan = models.ForeignKey(Plan, on_delete=models.CASCADE)
 
     def __str__(self):
-        return "{} : {}".format(self.interval, self.cost)
+        return "{}-{} : {}".format(self.start, self.end, self.cost)
