@@ -36,7 +36,7 @@ router.register(r'interval', IntervalViewSet)
 urlpatterns = [
     url(r'^$', index, name='index'),
     url(r'^api/', include(router.urls)),
-    url(r'^api/session/', include('session.urls')),
+    url(r'^api/command/', include('session.urls')),
     url(r'^api/reader/', include('reader.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^docs/', include('rest_framework_docs.urls')),
