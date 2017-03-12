@@ -14,7 +14,9 @@ class Session(models.Model):
 
     @property
     def duration(self):
-        now = timezone.now()
+        now = self.end
+        if not now:
+            now = timezone.now()
         return (now-self.start)
 
     @property
