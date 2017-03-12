@@ -6,7 +6,7 @@ from django.db import models
 
 class Card(models.Model):
     indentifier = models.TextField()
-    plan = models.ForeignKey(Plan, blank=True, default=None)
+    plan = models.ForeignKey(Plan, blank=True, null=True, default=None)
 
     def __str__(self):
         return self.indentifier

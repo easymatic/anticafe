@@ -9,7 +9,7 @@ class BaseSerializer(serializers.ModelSerializer):
 class CardSerializer(BaseSerializer):
     class Meta:
         model = Card
-        fields = ('id', 'indentifier')
+        fields = "__all__"
 
 
 class PersonSerializer(BaseSerializer):
