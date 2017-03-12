@@ -158,7 +158,7 @@ CHANNEL_LAYERS = {
         "BACKEND": "asgi_redis.RedisChannelLayer",
         "ROUTING": "anticafe.routing.channel_routing",
         "CONFIG": {
-            "hosts": [os.environ.get('REDIS_URL', 'redis://localhost:32769')],
+            "hosts": [os.environ.get('REDIS_URL', 'redis://localhost:6379')],
         },
     },
 }

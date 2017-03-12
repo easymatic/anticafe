@@ -11,6 +11,7 @@ class Session(models.Model):
     start = models.DateTimeField(default=timezone.now, blank=True)
     end = models.DateTimeField(null=True)
     card = models.ForeignKey(Card)
+    cost_field = models.FloatField(null=True, default=None)
 
     @property
     def duration(self):
@@ -25,6 +26,8 @@ class Session(models.Model):
 
     @property
     def cost(self):
+        if self.cost_field:
+            return self.cost_field
         plan = self.card.plan
         if not plan:
             return 0

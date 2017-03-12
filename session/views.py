@@ -60,5 +60,6 @@ def stop(request):
         return Response("Session not active",
                         status=status.HTTP_400_BAD_REQUEST)
     session.end = timezone.now()
+    session.cost_field = session.cost
     session.save()
     return Response(SessionSerializer(session).data)
