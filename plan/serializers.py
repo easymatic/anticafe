@@ -15,4 +15,4 @@ class PlanSerializer(BaseSerializer):
 class IntervalSerializer(BaseSerializer):
     class Meta:
         model = Interval
-        fields = '__all__'
+        fields = ('start', 'end', 'cost', 'plan', 'duration')

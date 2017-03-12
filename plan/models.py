@@ -19,5 +19,10 @@ class Interval(models.Model):
     cost = models.FloatField()
     plan = models.ForeignKey(Plan, on_delete=models.CASCADE)
 
+    @property
+    def duration(self):
+        return self.end - self.start
+
     def __str__(self):
-        return "{}-{} : {}".format(self.start, self.end, self.cost)
+        return "{}, {}-{} : {}".format(self.plan.name, self.start,
+                                       self.end, self.cost)
