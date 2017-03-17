@@ -18,7 +18,11 @@ class Session(models.Model):
         now = self.end
         if not now:
             now = timezone.now()
-        return (now-self.start)
+        delta = (now - self.start)
+        seconds = delta.seconds
+        # we round up duration to one minute
+        return delta + timedelta(
+            0, (seconds + 60)//60*60 - seconds, -delta.microseconds)
 
     @property
     def is_active(self):
